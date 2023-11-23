@@ -17,24 +17,24 @@ struct DeckListView: View {
        @Binding var selectedDeck: Deck?
     
     var body: some View {
-        List(selection: $selectedDeck) {
-            ForEach(decks) { deck in
-                NavigationLink(value:deck){
-                    Text(deck.title)
+        if(!addNew){
+            List{
+                ForEach(decks) { deck in
+                    NavigationLink(destination: CardListView(for: deck)){
+                        Text(deck.title)
+                    }
+                }
+                .onDelete(perform: deleteItems)
+            }.toolbar {
+                ToolbarItem {
+                    NavigationLink(destination: CreateDeckView(isPresented: $addNew), label: {Label("New Deck", systemImage: "plus")})
+
                 }
             }
-            .onDelete(perform: deleteItems)
-        }.toolbar {
-            ToolbarItem {
-                Button(action: addItem) {
-                    Label("New Deck", systemImage: "plus")
-                }
-            }
+            .navigationTitle("Flashcard Decks")
+        }else{
+            
         }
-        .navigationTitle("Flashcard Decks")
-        .sheet(isPresented: $addNew, content: {
-            CreateDeckView(isPresented: $addNew)
-        })
     }
     
     private func deleteItems(offsets: IndexSet) {

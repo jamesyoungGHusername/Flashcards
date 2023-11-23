@@ -9,17 +9,18 @@ import SwiftUI
 import SwiftData
 
 struct CardListView: View {
-    @Binding var selectedCard:Card?
-    @State var addNew:Bool = false
     @State var deck:Deck
+    var showToolbar:Bool = true
+    @State var addNew:Bool = false
     
-    init (for deck: Deck, selectedCard:Binding<Card?>){
+    
+    init (for deck:Deck,showToolbar:Bool = true){
         self.deck = deck
-        self._selectedCard = selectedCard
+        self.showToolbar = showToolbar
     }
     
     var body: some View {
-        List(selection:$selectedCard){
+        List{
             ForEach(deck.cards){card in
                 VStack{
                     Text(card.sideA.text)
@@ -27,10 +28,19 @@ struct CardListView: View {
                 }
                 .tag(card)
             }
+            if(!showToolbar){
+                HStack{
+                    Button(action: addCard){
+                        Label("Add Card", systemImage: "plus")
+                    }
+                }
+            }
         }.toolbar {
-            ToolbarItem {
-                Button(action: addCard) {
-                    Label("New Card", systemImage: "plus")
+            if(showToolbar){
+                ToolbarItem {
+                    Button(action: addCard) {
+                        Label("New Card", systemImage: "plus")
+                    }
                 }
             }
         }

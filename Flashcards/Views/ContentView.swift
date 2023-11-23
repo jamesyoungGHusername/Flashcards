@@ -17,20 +17,8 @@ struct ContentView: View {
     @Query private var decks: [Deck]
 
     var body: some View {
-        NavigationSplitView {
+        NavigationView {
             DeckListView(selectedDeck: $selectedDeck)
-        } content:{
-            if let deck = selectedDeck{
-                CardListView(for: deck, selectedCard: $selectedCard)
-            }else {
-                Text("Placeholder")
-            }
-        }detail: {
-            if let card = selectedCard{
-                CardDetailView(for: card)
-            }else {
-                Text("Placeholder")
-            }
         }
     }
     

@@ -50,6 +50,7 @@ final class Card {
 final class Face {
     var uuid: UUID
     var text:String
+    
     init(text:String){
         self.text = text
         self.uuid = Foundation.UUID()

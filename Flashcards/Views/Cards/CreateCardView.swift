@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreateCardView: View {
+    @Environment(\.modelContext) private var modelContext
     @Binding var isPresented:Bool
     @Binding var deck:Deck
     var body: some View {

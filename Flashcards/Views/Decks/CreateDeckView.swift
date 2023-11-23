@@ -10,7 +10,8 @@ import SwiftUI
 struct CreateDeckView: View {
     @Environment(\.modelContext) private var modelContext
     @Binding var isPresented:Bool;
-    @State var deck:Deck = Deck(timestamp: Date(),title:"");
+    @State var deck:Deck = Deck(timestamp: Date(),title:"New Deck");
+    @State var selectedCard:Card? = nil;
     @State var showImporter:Bool = false;
     @State var fileName = "no file chosen"
     @State var openFile = false
@@ -18,15 +19,18 @@ struct CreateDeckView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("New Deck")
+                TextField("Title",text: $deck.title)
                     .bold()
                 Spacer()
                 Button(action: {openFile = true}) {
                     Label("Import",systemImage: "square.and.arrow.down")
                 }
             }
-            TextField("Title",text: $deck.title)
-            
+            HStack{
+                Text("Cards")
+                Spacer()
+            }
+            CardListView(for: deck, showToolbar:false)
             Spacer()
             Button(action: addItem, label: {
                 Text("New Deck")
@@ -40,16 +44,21 @@ struct CreateDeckView: View {
                     self.fileName = fileURL.first?.lastPathComponent ?? "file not available"
                 }
                 catch{
-                   print("error reading file \(error.localizedDescription)")
+                    print("error reading file \(error.localizedDescription)")
                 }
+            })
+            .onAppear(perform: {
+                modelContext.insert(deck)
             })
     }
     
 
     func addItem(){
-        print(deck.title)
-        //modelContext.insert(deck)
-        //isPresented = false;
+        print("Adding deck titled \(deck.title)")
+        isPresented = false;
+    }
+    func addCard(){
+        print("Adding card")
     }
 }
 

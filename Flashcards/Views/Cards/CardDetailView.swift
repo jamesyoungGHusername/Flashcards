@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CardDetailView: View {
-    @State var card:Card
+    @Binding var card:Card
     
-    init (for card: Card){
-        self.card = card
+    init (for card: Binding<Card>){
+        self._card = card
     }
     var body: some View {
         Text(card.sideA.text)
