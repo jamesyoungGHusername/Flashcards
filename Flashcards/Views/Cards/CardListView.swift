@@ -20,35 +20,51 @@ struct CardListView: View {
     }
     
     var body: some View {
-        List{
-            ForEach(deck.cards){card in
-                VStack{
-                    Text(card.sideA.text)
-                    Text(card.sideB.text)
-                }
-                .tag(card)
-            }
-            if(!showToolbar){
-                HStack{
-                    Button(action: addCard){
-                        Label("Add Card", systemImage: "plus")
+        if(showToolbar){
+            List{
+                ForEach(deck.cards){card in
+                    VStack{
+                        Text(card.sideA.text)
+                        Text(card.sideB.text)
                     }
+                    .tag(card)
                 }
-            }
-        }.toolbar {
-            if(showToolbar){
+            }.toolbar {
                 ToolbarItem {
                     Button(action: addCard) {
                         Label("New Card", systemImage: "plus")
                     }
                 }
             }
+            .sheet(isPresented: $addNew, content: {
+                CreateCardView(isPresented: $addNew,deck:$deck)
+            })
+            .navigationTitle(deck.title)
+            .navigationBarTitleDisplayMode(.inline)
+        }else{
+            List{
+                ForEach(deck.cards){card in
+                    VStack{
+                        Text(card.sideA.text)
+                        Text(card.sideB.text)
+                    }
+                    .tag(card)
+                }
+
+                HStack{
+                    Button(action: addCard){
+                        Label("Add Card", systemImage: "plus")
+                    }
+                }
+                
+            }
+            .sheet(isPresented: $addNew, content: {
+                CreateCardView(isPresented: $addNew,deck:$deck)
+            })
+            .listStyle(.plain)
         }
-        .sheet(isPresented: $addNew, content: {
-            CreateCardView(isPresented: $addNew,deck:$deck)
-        })
-        .navigationTitle(deck.title)
-        .navigationBarTitleDisplayMode(.inline)
+
+
     }
    private func addCard() {
        addNew = true;

@@ -13,28 +13,33 @@ struct DeckListView: View {
 
     @Query(sort: \Deck.timestamp, order: .forward)
        var  decks: [Deck]
-    @State var addNew:Bool = false
        @Binding var selectedDeck: Deck?
     
     var body: some View {
-        if(!addNew){
+
             List{
                 ForEach(decks) { deck in
                     NavigationLink(destination: CardListView(for: deck)){
-                        Text(deck.title)
+                        if(deck.title != ""){
+                            Text(deck.title)
+                        }else{
+                            HStack{
+                                Text("Untitled Deck").foregroundStyle(.secondary)
+                                Text(deck.timestamp,style:.date)
+                            }
+                            
+                        }
+                        
                     }
                 }
                 .onDelete(perform: deleteItems)
             }.toolbar {
                 ToolbarItem {
-                    NavigationLink(destination: CreateDeckView(isPresented: $addNew), label: {Label("New Deck", systemImage: "plus")})
-
+                    NavigationLink(destination: CreateDeckView(), label: {Label("New Deck", systemImage: "plus")})
                 }
             }
             .navigationTitle("Flashcard Decks")
-        }else{
-            
-        }
+        
     }
     
     private func deleteItems(offsets: IndexSet) {
@@ -43,9 +48,6 @@ struct DeckListView: View {
                 modelContext.delete(decks[index])
             }
         }
-    }
-    private func addItem() {
-        addNew = true;
     }
 }
 
