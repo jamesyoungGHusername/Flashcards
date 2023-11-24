@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4258F8F2B10D01000AB7252 /* ImportingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4258F8E2B10D01000AB7252 /* ImportingView.swift */; };
 		C4DDC08B2B0F297E00F7744C /* FlashcardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC08A2B0F297E00F7744C /* FlashcardsApp.swift */; };
 		C4DDC08D2B0F297E00F7744C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC08C2B0F297E00F7744C /* ContentView.swift */; };
 		C4DDC08F2B0F297E00F7744C /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC08E2B0F297E00F7744C /* Deck.swift */; };
@@ -15,7 +16,6 @@
 		C4DDC09E2B0F298000F7744C /* FlashcardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC09D2B0F298000F7744C /* FlashcardsTests.swift */; };
 		C4DDC0A82B0F298000F7744C /* FlashcardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC0A72B0F298000F7744C /* FlashcardsUITests.swift */; };
 		C4DDC0AA2B0F298000F7744C /* FlashcardsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC0A92B0F298000F7744C /* FlashcardsUITestsLaunchTests.swift */; };
-		C4DDC0B72B0F4BE800F7744C /* EditDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC0B62B0F4BE800F7744C /* EditDeckView.swift */; };
 		C4DDC0B92B0F50DF00F7744C /* CreateDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC0B82B0F50DF00F7744C /* CreateDeckView.swift */; };
 		C4DDC0BC2B0F586600F7744C /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC0BB2B0F586600F7744C /* Folder.swift */; };
 		C4DDC0BE2B0F5D4A00F7744C /* DeckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC0BD2B0F5D4A00F7744C /* DeckListView.swift */; };
@@ -23,6 +23,9 @@
 		C4DDC0C32B0F653800F7744C /* CardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC0C22B0F653800F7744C /* CardRow.swift */; };
 		C4DDC0C52B0F65E800F7744C /* CreateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC0C42B0F65E800F7744C /* CreateCardView.swift */; };
 		C4DDC0C72B0FA40D00F7744C /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC0C62B0FA40D00F7744C /* CardDetailView.swift */; };
+		C4F968C02B10916E003185CB /* DeckDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F968BF2B10916E003185CB /* DeckDetailView.swift */; };
+		C4F968C32B10AA84003185CB /* CoreXLSX in Frameworks */ = {isa = PBXBuildFile; productRef = C4F968C22B10AA84003185CB /* CoreXLSX */; };
+		C4F968C62B10AB76003185CB /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = C4F968C52B10AB76003185CB /* SwiftCSV */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4258F8E2B10D01000AB7252 /* ImportingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportingView.swift; sourceTree = "<group>"; };
 		C4DDC0872B0F297E00F7744C /* Flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4DDC08A2B0F297E00F7744C /* FlashcardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsApp.swift; sourceTree = "<group>"; };
 		C4DDC08C2B0F297E00F7744C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,7 +58,6 @@
 		C4DDC0A32B0F298000F7744C /* FlashcardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlashcardsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4DDC0A72B0F298000F7744C /* FlashcardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsUITests.swift; sourceTree = "<group>"; };
 		C4DDC0A92B0F298000F7744C /* FlashcardsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		C4DDC0B62B0F4BE800F7744C /* EditDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDeckView.swift; sourceTree = "<group>"; };
 		C4DDC0B82B0F50DF00F7744C /* CreateDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDeckView.swift; sourceTree = "<group>"; };
 		C4DDC0BB2B0F586600F7744C /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		C4DDC0BD2B0F5D4A00F7744C /* DeckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListView.swift; sourceTree = "<group>"; };
@@ -62,6 +65,8 @@
 		C4DDC0C22B0F653800F7744C /* CardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRow.swift; sourceTree = "<group>"; };
 		C4DDC0C42B0F65E800F7744C /* CreateCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCardView.swift; sourceTree = "<group>"; };
 		C4DDC0C62B0FA40D00F7744C /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
+		C4F968BF2B10916E003185CB /* DeckDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckDetailView.swift; sourceTree = "<group>"; };
+		C4FFEC592B110A1A00DCED7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4F968C32B10AA84003185CB /* CoreXLSX in Frameworks */,
+				C4F968C62B10AB76003185CB /* SwiftCSV in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C4258F8D2B10CFEF00AB7252 /* Spreadsheets */ = {
+			isa = PBXGroup;
+			children = (
+				C4258F8E2B10D01000AB7252 /* ImportingView.swift */,
+			);
+			path = Spreadsheets;
+			sourceTree = "<group>";
+		};
 		C4DDC07E2B0F297E00F7744C = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +127,7 @@
 		C4DDC0892B0F297E00F7744C /* Flashcards */ = {
 			isa = PBXGroup;
 			children = (
+				C4FFEC592B110A1A00DCED7A /* Info.plist */,
 				C4DDC0BF2B0F5DE600F7744C /* Views */,
 				C4DDC0BA2B0F585000F7744C /* Model */,
 				C4DDC08A2B0F297E00F7744C /* FlashcardsApp.swift */,
@@ -158,6 +174,7 @@
 		C4DDC0BF2B0F5DE600F7744C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C4258F8D2B10CFEF00AB7252 /* Spreadsheets */,
 				C4DDC0C92B0FACC000F7744C /* Cards */,
 				C4DDC0C82B0FACB400F7744C /* Decks */,
 				C4DDC08C2B0F297E00F7744C /* ContentView.swift */,
@@ -170,7 +187,7 @@
 			children = (
 				C4DDC0BD2B0F5D4A00F7744C /* DeckListView.swift */,
 				C4DDC0B82B0F50DF00F7744C /* CreateDeckView.swift */,
-				C4DDC0B62B0F4BE800F7744C /* EditDeckView.swift */,
+				C4F968BF2B10916E003185CB /* DeckDetailView.swift */,
 			);
 			path = Decks;
 			sourceTree = "<group>";
@@ -202,6 +219,10 @@
 			dependencies = (
 			);
 			name = Flashcards;
+			packageProductDependencies = (
+				C4F968C22B10AA84003185CB /* CoreXLSX */,
+				C4F968C52B10AB76003185CB /* SwiftCSV */,
+			);
 			productName = Flashcards;
 			productReference = C4DDC0872B0F297E00F7744C /* Flashcards.app */;
 			productType = "com.apple.product-type.application";
@@ -274,6 +295,10 @@
 				Base,
 			);
 			mainGroup = C4DDC07E2B0F297E00F7744C;
+			packageReferences = (
+				C4F968C12B10AA84003185CB /* XCRemoteSwiftPackageReference "CoreXLSX" */,
+				C4F968C42B10AB76003185CB /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+			);
 			productRefGroup = C4DDC0882B0F297E00F7744C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -317,15 +342,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4DDC08D2B0F297E00F7744C /* ContentView.swift in Sources */,
-				C4DDC0B72B0F4BE800F7744C /* EditDeckView.swift in Sources */,
 				C4DDC08F2B0F297E00F7744C /* Deck.swift in Sources */,
 				C4DDC08B2B0F297E00F7744C /* FlashcardsApp.swift in Sources */,
+				C4F968C02B10916E003185CB /* DeckDetailView.swift in Sources */,
 				C4DDC0B92B0F50DF00F7744C /* CreateDeckView.swift in Sources */,
 				C4DDC0BC2B0F586600F7744C /* Folder.swift in Sources */,
 				C4DDC0C52B0F65E800F7744C /* CreateCardView.swift in Sources */,
 				C4DDC0C72B0FA40D00F7744C /* CardDetailView.swift in Sources */,
 				C4DDC0C12B0F5EE300F7744C /* CardListView.swift in Sources */,
 				C4DDC0C32B0F653800F7744C /* CardRow.swift in Sources */,
+				C4258F8F2B10D01000AB7252 /* ImportingView.swift in Sources */,
 				C4DDC0BE2B0F5D4A00F7744C /* DeckListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,11 +519,14 @@
 				DEVELOPMENT_TEAM = XCBTW98MC4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Flashcards/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -522,11 +551,14 @@
 				DEVELOPMENT_TEAM = XCBTW98MC4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Flashcards/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -656,6 +688,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C4F968C12B10AA84003185CB /* XCRemoteSwiftPackageReference "CoreXLSX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CoreOffice/CoreXLSX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.2;
+			};
+		};
+		C4F968C42B10AB76003185CB /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftcsv/SwiftCSV.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C4F968C22B10AA84003185CB /* CoreXLSX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4F968C12B10AA84003185CB /* XCRemoteSwiftPackageReference "CoreXLSX" */;
+			productName = CoreXLSX;
+		};
+		C4F968C52B10AB76003185CB /* SwiftCSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4F968C42B10AB76003185CB /* XCRemoteSwiftPackageReference "SwiftCSV" */;
+			productName = SwiftCSV;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C4DDC07F2B0F297E00F7744C /* Project object */;
 }

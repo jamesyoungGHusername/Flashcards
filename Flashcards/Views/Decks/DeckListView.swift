@@ -19,7 +19,7 @@ struct DeckListView: View {
 
             List{
                 ForEach(decks) { deck in
-                    NavigationLink(destination: CardListView(for: deck)){
+                    NavigationLink(destination: DeckDetailView(deck:deck)){
                         if(deck.title != ""){
                             Text(deck.title)
                         }else{
@@ -35,7 +35,7 @@ struct DeckListView: View {
                 .onDelete(perform: deleteItems)
             }.toolbar {
                 ToolbarItem {
-                    NavigationLink(destination: CreateDeckView(), label: {Label("New Deck", systemImage: "plus")})
+                    NavigationLink(destination: CreateDeckView(decks:decks), label: {Label("New Deck", systemImage: "plus")})
                 }
             }
             .navigationTitle("Flashcard Decks")

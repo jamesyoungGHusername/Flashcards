@@ -24,7 +24,9 @@ final class Deck {
     }
     
     static func example() -> Deck{
-        return Deck(timestamp:Date.now,title:"Example Deck",cards:[Card.example()])
+        let newDeck = Deck(timestamp:Date.now,title:"Example Deck")
+        newDeck.cards = [Card.example()]
+        return newDeck
     }
 }
 
@@ -34,12 +36,14 @@ final class Card {
     var sideA:Face
     var sideB:Face
     var creationDate:Date
+
     
     init(sideA:Face,sideB:Face){
         self.sideA = sideA
         self.sideB = sideB
         self.uuid = Foundation.UUID()
         self.creationDate = Date.now
+
     }
     static func example() -> Card{
         return Card(sideA: Face(text:"side a"), sideB:Face(text: "side b"))

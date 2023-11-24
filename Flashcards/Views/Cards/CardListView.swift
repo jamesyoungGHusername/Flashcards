@@ -9,15 +9,12 @@ import SwiftUI
 import SwiftData
 
 struct CardListView: View {
+    @Environment(\.editMode) private var editMode
     @State var deck:Deck
     var showToolbar:Bool = true
     @State var addNew:Bool = false
     
-    
-    init (for deck:Deck,showToolbar:Bool = true){
-        self.deck = deck
-        self.showToolbar = showToolbar
-    }
+
     
     var body: some View {
         if(showToolbar){
@@ -25,14 +22,18 @@ struct CardListView: View {
                 ForEach(deck.cards){card in
                     VStack{
                         Text(card.sideA.text)
-                        Text(card.sideB.text)
                     }
                     .tag(card)
-                }
+                }.onDelete(perform: deleteItems)
             }.toolbar {
                 ToolbarItem {
                     Button(action: addCard) {
                         Label("New Card", systemImage: "plus")
+                    }
+                }
+                ToolbarItem {
+                    Button(action: addCard) {
+                        Text("Edit")
                     }
                 }
             }
@@ -49,8 +50,7 @@ struct CardListView: View {
                         Text(card.sideB.text)
                     }
                     .tag(card)
-                }
-
+                }.onDelete(perform: deleteItems)
                 HStack{
                     Button(action: addCard){
                         Label("Add Card", systemImage: "plus")
@@ -66,7 +66,14 @@ struct CardListView: View {
 
 
     }
-   private func addCard() {
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            for index in offsets {
+                deck.cards.remove(at: index)
+            }
+        }
+    }
+    private func addCard() {
        addNew = true;
-   }
+    }
 }
