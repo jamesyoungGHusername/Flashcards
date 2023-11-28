@@ -31,7 +31,7 @@ final class Deck {
 }
 
 @Model
-final class Card {
+final class Card: Identifiable{
     var uuid: UUID
     var sideA:Face
     var sideB:Face

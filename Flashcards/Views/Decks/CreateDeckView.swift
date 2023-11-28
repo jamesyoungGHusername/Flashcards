@@ -66,7 +66,7 @@ struct CreateDeckView: View {
         })
         .sheet(isPresented: $fileSelected, content: {
             if(fileName != nil){
-                ImportingView(fileUrl: fileName!,isPresented:$fileSelected)
+                ImportingView(fileUrl: fileName!,isPresented:$fileSelected,parentDeck: $deck)
             }else{
                 EmptyView()
             }
