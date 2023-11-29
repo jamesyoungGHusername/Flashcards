@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C4258F8F2B10D01000AB7252 /* ImportingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4258F8E2B10D01000AB7252 /* ImportingView.swift */; };
+		C48BE15B2B1735B7005DB2A9 /* StudyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BE15A2B1735B7005DB2A9 /* StudyScreenView.swift */; };
 		C4DDC08B2B0F297E00F7744C /* FlashcardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC08A2B0F297E00F7744C /* FlashcardsApp.swift */; };
 		C4DDC08D2B0F297E00F7744C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC08C2B0F297E00F7744C /* ContentView.swift */; };
 		C4DDC08F2B0F297E00F7744C /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDC08E2B0F297E00F7744C /* Deck.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		C4258F8E2B10D01000AB7252 /* ImportingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportingView.swift; sourceTree = "<group>"; };
+		C48BE15A2B1735B7005DB2A9 /* StudyScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyScreenView.swift; sourceTree = "<group>"; };
 		C4DDC0872B0F297E00F7744C /* Flashcards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashcards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4DDC08A2B0F297E00F7744C /* FlashcardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardsApp.swift; sourceTree = "<group>"; };
 		C4DDC08C2B0F297E00F7744C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				C4DDC0BD2B0F5D4A00F7744C /* DeckListView.swift */,
 				C4DDC0B82B0F50DF00F7744C /* CreateDeckView.swift */,
 				C4F968BF2B10916E003185CB /* DeckDetailView.swift */,
+				C48BE15A2B1735B7005DB2A9 /* StudyScreenView.swift */,
 			);
 			path = Decks;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				C4DDC08F2B0F297E00F7744C /* Deck.swift in Sources */,
 				C4DDC08B2B0F297E00F7744C /* FlashcardsApp.swift in Sources */,
 				C4F968C02B10916E003185CB /* DeckDetailView.swift in Sources */,
+				C48BE15B2B1735B7005DB2A9 /* StudyScreenView.swift in Sources */,
 				C4DDC0B92B0F50DF00F7744C /* CreateDeckView.swift in Sources */,
 				C4DDC0BC2B0F586600F7744C /* Folder.swift in Sources */,
 				C4DDC0C52B0F65E800F7744C /* CreateCardView.swift in Sources */,

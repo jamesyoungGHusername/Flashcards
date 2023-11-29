@@ -15,24 +15,27 @@ struct DeckDetailView: View {
     
 
     var body: some View {
-        VStack{
-            NavigationLink(destination: Text("Study Screen"), tag: 1, selection: $action) {
+        ZStack{
+            NavigationLink(destination: StudyScreenView(deck:$deck), tag: 1, selection: $action) {
                 EmptyView()
             }
-            if editMode?.wrappedValue.isEditing == true {
-                TextField("Untitled",text:$deck.title)
-            }else{
-                if(deck.title != ""){
-                    Text(deck.title)
+            VStack{
+                if editMode?.wrappedValue.isEditing == true {
+                    TextField("Untitled",text:$deck.title)
                 }else{
-                    Text("Untitled").foregroundStyle(.secondary)
+                    if(deck.title != ""){
+                        Text(deck.title)
+                    }else{
+                        Text("Untitled").foregroundStyle(.secondary)
+                    }
                 }
+                CardListView(deck:deck,showToolbar: false)
+                    .safeAreaInset(edge: .bottom){
+                        Button(action: {action = 1}, label: {
+                            Text("Study")
+                        }).buttonStyle(.borderedProminent)
+                    }
             }
-            CardListView(deck:deck,showToolbar: false)
-            Spacer()
-            Button(action: {action = 1}, label: {
-                Text("Study")
-            })
         }.toolbar {
             EditButton()
         }

@@ -56,7 +56,6 @@ struct CardListView: View {
                         Label("Add Card", systemImage: "plus")
                     }
                 }
-                
             }
             .sheet(isPresented: $addNew, content: {
                 CreateCardView(isPresented: $addNew,deck:$deck)

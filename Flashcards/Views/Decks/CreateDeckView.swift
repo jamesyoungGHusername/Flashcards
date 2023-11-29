@@ -38,7 +38,7 @@ struct CreateDeckView: View {
             Spacer()
             Button(action: addItem, label: {
                 Text("Save Deck")
-            })
+            }).buttonStyle(.borderedProminent)
         }
         .padding([.all])
         .fileImporter( isPresented: $openFile, allowedContentTypes: [.xlsx,.csv], allowsMultipleSelection: false, onCompletion: {
