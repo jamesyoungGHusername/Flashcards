@@ -10,50 +10,123 @@ import SwiftUI
 struct StudyCardView: View {
     @Binding var deck:Deck
     @State var card:Card
+    @State var disableDiscard:Bool = true
+    @State private var selectedItem = 1
     let cardHeight:CGFloat
     let index:Int
     var body: some View {
         ZStack{
-            TabView{
+            TabView(selection: $selectedItem){
+                cardBody
+                    .tag(1)
                 ZStack{
-                    Color.white
+                    Color.red
                     VStack{
-                        Color.red
-                            .frame(height: 2)
-                            .padding(.top,30)
+                        Text("DISCARD")
+                    }
+                }.padding()
+                .frame(height:cardHeight)
+                .tag(2)
+            }.tabViewStyle(.page(indexDisplayMode: .never))
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+            .background(Color(.systemGroupedBackground))
+            .frame(height:cardHeight)
+            .onChange(of: selectedItem) { oldValue, newValue in
+                if(newValue == 2){
+                    print("call discard here.")
+                }
+            }
+            .animation(.easeOut(duration: 0.2), value: selectedItem)
+            if(index == deck.cards.count-1){
+                VStack{
+                    Spacer()
+                    HStack{
+                        Spacer()
+                        Image(systemName: "repeat")
+                            .foregroundStyle(Color.blue)
+                        Spacer()
+                        Image(systemName: "shuffle")
+                            .foregroundStyle(Color.blue)
                         Spacer()
                     }
+                }
+                    .safeAreaPadding(.bottom)
+                    .padding(.bottom,30)
+            }else{
+                VStack{
+                    Spacer()
+                    Image(systemName: "arrow.down")
+                        .foregroundStyle(Color.blue)
+                }.safeAreaPadding(.bottom)
+                    .padding(.bottom,30)
+
+            }
+        }.containerRelativeFrame(.vertical)
+    }
+    
+    
+    var cardBody: some View{
+        TabView{
+            ZStack{
+                Color(red: 250, green: 250, blue: 245)
+                VStack{
+                    Color.red
+                        .frame(height: 2)
+                        .padding(.top,30)
+                    Spacer()
+                }
+                VStack{
+                    Spacer()
+                    Spacer()
                     Text(card.sideA.text)
                         .lineLimit(nil)
                         .padding(.horizontal)
                         .foregroundStyle(Color.black)
-                }.padding(.leading)
-                .frame(height:cardHeight)
-                ZStack{
-                    Color.white
-                    VStack{
-                        Color.red
-                            .frame(height: 2)
-                            .padding(.top,30)
+                    Spacer()
+                    HStack{
                         Spacer()
+                        Image(systemName: "arrow.turn.down.right")
+                            .foregroundStyle(Color.blue)
                     }
+                    .padding()
+                    .padding(.bottom,35)
+                }
+            }.padding(.leading)
+            .frame(height:cardHeight)
+            ZStack{
+                Color(red: 250, green: 250, blue: 245)
+                VStack{
+                    Color.red
+                        .frame(height: 2)
+                        .padding(.top,30)
+                    Spacer()
+                }
+                VStack{
+                    Spacer()
+                    Spacer()
                     Text(card.sideB.text)
                         .lineLimit(nil)
                         .padding(.horizontal)
                         .foregroundStyle(Color.black)
-                }.padding(.trailing)
-                .frame(height:cardHeight)
-            }.tabViewStyle(PageTabViewStyle())
-            .containerRelativeFrame(.vertical)
-            if(index == deck.cards.count-1){
-                VStack{
                     Spacer()
-                    Text("SHUFFLE AND REPEAT OPTIONS HERE")
+                    HStack{
+                        Image(systemName: "arrow.turn.down.left")
+                            .foregroundStyle(Color.blue)
+                        Spacer()
+                        Button(action: {selectedItem = 2}){
+                            Label("Discard",systemImage: "delete.right")
+                                .foregroundStyle(Color.blue)
+                        }
+
+                    }
+                    .padding()
+                    .padding(.bottom,35)
                 }
-                    .safeAreaPadding(.bottom)
-                    .padding(.bottom,30)
-            }
-        }
+            }.padding(.trailing)
+            .frame(height:cardHeight)
+        }.tabViewStyle(PageTabViewStyle())
+        .indexViewStyle(.page(backgroundDisplayMode: .always))
+        .frame(height:cardHeight)
     }
 }
 
