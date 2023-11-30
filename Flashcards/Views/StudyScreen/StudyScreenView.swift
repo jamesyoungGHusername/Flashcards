@@ -10,7 +10,6 @@ import SwiftUI
 struct StudyScreenView: View {
     @Binding var deck:Deck
     @State private var scrollPosition: CGPoint = .zero
-    @State private var maxScrollPosition: CGFloat = 0
     @State private var initialOffset: CGFloat = 0
     @State private var stepSize: CGFloat = 0
     private var diffFromInitial:CGFloat{
@@ -46,9 +45,6 @@ struct StudyScreenView: View {
                         }
                     }.background(GeometryReader { vertical in
                         Color.clear
-                            .onAppear(){
-                                self.maxScrollPosition = vertical.size.height
-                            }
                             .preference(key: ScrollOffsetPreferenceKey.self, value: vertical.frame(in: .named("scroll")).origin)
                             .onChange(of: scrollPosition) {oldValue, newValue in
                                 if(initialOffset == 0 && newValue.y != 0){
