@@ -18,6 +18,7 @@ struct CreateDeckView: View {
     @State var fileSelected = false
     @State var openFile = false
     @State var showConfirmation = false
+    @State var deckInserted = false
     
     var body: some View {
 
@@ -54,7 +55,11 @@ struct CreateDeckView: View {
             }
         })
         .onAppear(perform: {
-            modelContext.insert(deck)
+            if(!deckInserted){
+                modelContext.insert(deck)
+                deckInserted = true
+            }
+            
         })
         .navigationBarTitle("Create Deck")
         .navigationBarTitleDisplayMode(.inline)

@@ -44,14 +44,14 @@ struct CardListView: View {
         }else{
             ZStack{
                 List{
-                    ForEach(Array(cards.enumerated()),id:\.offset){index,card in
+                    ForEach(deck.cards.indices,id:\.self){i in
                         VStack{
-                            NavigationLink(destination: CardDetailView(deck: $deck, card: card,index: index)){
-                                CardRow(card: card)
+                            Text(String(i))
+                            NavigationLink(destination: CardDetailView(deck: $deck, card: deck.cards[i],index: i)){
+                                CardRow(card: deck.cards[i])
                             }
                             
                         }
-                        .tag(card)
                     }.onDelete(perform: deleteItems)
                     HStack{
                         Button(action: addCard){

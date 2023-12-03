@@ -13,7 +13,7 @@ struct CardDetailView: View {
     @Environment(\.modelContext) private var modelContext
 
     @Binding var deck:Deck
-    @Bindable var card:Card
+    var card:Card
     @State var sideA:String
     @State var sideB:String
     @State var newText:String = ""
@@ -25,7 +25,7 @@ struct CardDetailView: View {
     
     init(deck: Binding<Deck>, card: Card,index:Int) {
         _deck = deck
-        _card = Bindable(card)
+        self.card = card
         _sideA = State(initialValue: card.sideA.text)
         _sideB = State(initialValue: card.sideB.text)
         self.index = index
@@ -125,7 +125,11 @@ struct CardDetailView: View {
                 EditButton()
             }
             .onDisappear(){
-                deck.cards[index] = Card(sideA: Face(text: sideA), sideB: Face(text: sideB))
+                if(card.sideA.text != sideA || card.sideB.text != sideB){
+                    deck.cards[index].sideA = Face(text: sideA)
+                    deck.cards[index].sideB = Face(text: sideB)
+                }
+
             }
 
        

@@ -16,6 +16,7 @@ struct ImportingView: View {
     @State var editMode = EditMode.active
     @Binding var isPresented:Bool
     @Binding var parentDeck:Deck
+    @State private var allSelected:Bool = false
     
     init(fileUrl: URL, isPresented: Binding<Bool>,parentDeck:Binding<Deck>) {
         _fileUrl = State(initialValue:fileUrl)
@@ -44,11 +45,23 @@ struct ImportingView: View {
     var body: some View {
         if(fileUrl.pathExtension == "csv" && csv != nil && rows != nil){
             ZStack{
-                VStack{
+                VStack(spacing:0){
                     HStack{
                         Text("Select Loaded Cards")
                         Text("\(selectedCards.count)/\(rows!.count)")
                     }
+                    Toggle("Select All",isOn: $allSelected)
+                    .onChange(of: allSelected){oldValue,newValue in
+                        if(newValue == true){
+                            selectedCards = []
+                            rows?.forEach{row in
+                                selectedCards.insert(row.id)
+                            }
+                        }
+                        if(newValue == false && selectedCards.count == rows?.count){
+                            selectedCards = []
+                        }
+                    }.padding(.horizontal)
                     List(rows!,selection: $selectedCards){row in
                         HStack{
                             ForEach(row.cells){cell in
@@ -57,30 +70,34 @@ struct ImportingView: View {
                         }
                     }
                     .environment(\.editMode, $editMode)
-                }
-                VStack{
-                    Spacer()
-                    Button("Done", action: {
-                        let selected = rows?.filter{row in
-                            selectedCards.contains(row.id)
+                    .onChange(of: selectedCards){oldValue, newValue in
+                        if(newValue.count != rows?.count){
+                            allSelected = false
                         }
-                        if(!(selected?.isEmpty ?? true)){
-                            selected!.forEach{ row in
-                                //Use first non empty column for side A
-                                let sideA = row.cells.first(where: {$0.text != ""})
-                                //Use last non empty column for side B, unless there's only one empty column
-                                let sideB = row.cells.last(where: {$0.text != "" && $0.text != sideA?.text ?? ""})
-                                parentDeck.cards.append(
-                                    Card(sideA: Face(text: sideA?.text ?? ""), sideB: Face(text: sideB?.text ?? ""))
-                                )
+                    }
+                    .safeAreaInset(edge: .bottom){
+                        Button("Done", action: {
+                            let selected = rows?.filter{row in
+                                selectedCards.contains(row.id)
                             }
-                            isPresented = false
-                        }
-                        
-                        //parentDeck.cards.append()
-                        //isPresented = false
-                    })
-                      .buttonStyle(.borderedProminent)
+                            if(!(selected?.isEmpty ?? true)){
+                                selected!.forEach{ row in
+                                    //Use first non empty column for side A
+                                    let sideA = row.cells.first(where: {$0.text != ""})
+                                    //Use last non empty column for side B, unless there's only one empty column
+                                    let sideB = row.cells.last(where: {$0.text != "" && $0.text != sideA?.text ?? ""})
+                                    parentDeck.cards.append(
+                                        Card(sideA: Face(text: sideA?.text ?? ""), sideB: Face(text: sideB?.text ?? ""))
+                                    )
+                                }
+                                isPresented = false
+                            }
+                            
+                            //parentDeck.cards.append()
+                            //isPresented = false
+                        })
+                          .buttonStyle(.borderedProminent)
+                    }
                 }
 
             }
