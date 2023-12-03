@@ -37,7 +37,7 @@ struct CardListView: View {
                 }
             }
             .sheet(isPresented: $addNew, content: {
-                CreateCardView(isPresented: $addNew,deck:$deck)
+                CreateCardView(deck:$deck,isPresented: $addNew)
             })
             .navigationTitle(deck.title)
             .navigationBarTitleDisplayMode(.inline)
@@ -60,10 +60,10 @@ struct CardListView: View {
                     }
                 }
                 .sheet(isPresented: $addNew, content: {
-                    CreateCardView(isPresented: $addNew,deck:$deck)
+                    CreateCardView(deck:$deck,isPresented: $addNew)
                 })
                 .listStyle(.plain)
-            }.navigationTitle(deck.title)
+            }.navigationBarTitleDisplayMode(.inline)
 
         }
 

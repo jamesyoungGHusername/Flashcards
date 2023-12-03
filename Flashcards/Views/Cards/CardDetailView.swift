@@ -114,8 +114,6 @@ struct CardDetailView: View {
                 }.frame(height: fullScreenHeight)
             }
             .onChange(of: proxy.size.height){oldValue,newValue in
-                print(oldValue)
-                print(newValue)
                 if(!hasResized){
                     hasResized = true
                     fullScreenHeight = newValue

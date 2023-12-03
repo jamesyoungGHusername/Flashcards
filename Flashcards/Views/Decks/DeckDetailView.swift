@@ -21,21 +21,26 @@ struct DeckDetailView: View {
                 EmptyView()
             }
             VStack{
-                if editMode?.wrappedValue.isEditing == true {
-                    TextField("Untitled",text:$deck.title)
-                }else{
-                    if(deck.title != ""){
-                        Text(deck.title)
+                HStack{                
+                    if editMode?.wrappedValue.isEditing == true {
+                        TextField("Untitled",text:$deck.title)
+                            .font(.title)
                     }else{
-                        Text("Untitled").foregroundStyle(.secondary)
+                        if(deck.title != ""){
+                            Text(deck.title)
+                                .font(.title)
+                        }else{
+                            Text("Untitled").foregroundStyle(.secondary)
+                        }
                     }
+                    Spacer()
                 }
+                Button(action: {action = 1}, label: {
+                    Text("Study")
+                }).frame(maxWidth: .infinity)
+                    .padding()
+                    .buttonStyle(.borderedProminent)
                 CardListView(deck:deck,cards:deck.cards,showToolbar: false)
-                    .safeAreaInset(edge: .bottom){
-                        Button(action: {action = 1}, label: {
-                            Text("Study")
-                        }).buttonStyle(.borderedProminent)
-                    }
             }
         }.toolbar {
             EditButton()

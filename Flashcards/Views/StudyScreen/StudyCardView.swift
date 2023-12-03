@@ -16,27 +16,9 @@ struct StudyCardView: View {
     let index:Int
     var body: some View {
         ZStack{
-            TabView(selection: $selectedItem){
-                cardBody
-                    .tag(1)
-                ZStack{
-                    Color.red
-                    VStack{
-                        Text("DISCARD")
-                    }
-                }.padding()
-                .frame(height:cardHeight)
-                .tag(2)
-            }.tabViewStyle(.page(indexDisplayMode: .never))
-            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
-            .background(Color(.systemGroupedBackground))
-            .frame(height:cardHeight)
-            .onChange(of: selectedItem) { oldValue, newValue in
-                if(newValue == 2){
-                    print("call discard here.")
-                }
-            }
-            .animation(.easeOut(duration: 0.2), value: selectedItem)
+            cardBody
+                .tag(1)
+
             if(index == deck.cards.count-1){
                 VStack{
                     Spacer()
@@ -63,8 +45,7 @@ struct StudyCardView: View {
             }
         }.containerRelativeFrame(.vertical)
     }
-    
-    
+
     var cardBody: some View{
         TabView{
             VStack(spacing:0){
@@ -110,7 +91,7 @@ struct StudyCardView: View {
                             Image(systemName: "arrow.turn.down.left")
                                 .foregroundStyle(Color.blue)
                             Spacer()
-                            Button(action: {selectedItem = 2}){
+                            Button(action: {print("discard")}){
                                 Label("Discard",systemImage: "delete.right")
                                     .foregroundStyle(Color.blue)
                             }
