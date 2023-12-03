@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StudyCardView: View {
-    @Binding var deck:Deck
+    var deck:Deck
     @State var card:Card
     @State var disableDiscard:Bool = true
     @State private var selectedItem = 1
@@ -67,63 +67,62 @@ struct StudyCardView: View {
     
     var cardBody: some View{
         TabView{
-            ZStack{
+            VStack(spacing:0){
                 Color(red: 250, green: 250, blue: 245)
-                VStack{
+                    .frame(height: 30)
                     Color.red
                         .frame(height: 2)
-                        .padding(.top,30)
-                    Spacer()
-                }
-                VStack{
-                    Spacer()
-                    Spacer()
-                    Text(card.sideA.text)
-                        .lineLimit(nil)
-                        .padding(.horizontal)
-                        .foregroundStyle(Color.black)
-                    Spacer()
-                    HStack{
+                ZStack{
+                    Color(red: 250, green: 250, blue: 245)
+                    VStack{
                         Spacer()
-                        Image(systemName: "arrow.turn.down.right")
-                            .foregroundStyle(Color.blue)
-                    }
-                    .padding()
-                    .padding(.bottom,35)
-                }
-            }.padding(.leading)
-            .frame(height:cardHeight)
-            ZStack{
-                Color(red: 250, green: 250, blue: 245)
-                VStack{
-                    Color.red
-                        .frame(height: 2)
-                        .padding(.top,30)
-                    Spacer()
-                }
-                VStack{
-                    Spacer()
-                    Spacer()
-                    Text(card.sideB.text)
-                        .lineLimit(nil)
-                        .padding(.horizontal)
-                        .foregroundStyle(Color.black)
-                    Spacer()
-                    HStack{
-                        Image(systemName: "arrow.turn.down.left")
-                            .foregroundStyle(Color.blue)
+                        Text(card.sideA.text)
+                            .lineLimit(nil)
+                            .padding(.horizontal)
+                            .foregroundStyle(Color.black)
                         Spacer()
-                        Button(action: {selectedItem = 2}){
-                            Label("Discard",systemImage: "delete.right")
+                        HStack{
+                            Spacer()
+                            Image(systemName: "arrow.turn.down.right")
                                 .foregroundStyle(Color.blue)
                         }
-
+                        .padding()
+                        .padding(.bottom,35)
                     }
-                    .padding()
-                    .padding(.bottom,35)
+                }
+            }.padding(.leading)
+                .frame(height:cardHeight)
+            VStack(spacing:0){
+                Color(red: 250, green: 250, blue: 245)
+                    .frame(height: 30)
+                    Color.red
+                        .frame(height: 2)
+                ZStack{
+                    Color(red: 250, green: 250, blue: 245)
+                    VStack{
+                        Spacer()
+                        Text(card.sideB.text)
+                            .lineLimit(nil)
+                            .padding(.horizontal)
+                            .foregroundStyle(Color.black)
+                        Spacer()
+                        HStack{
+                            Image(systemName: "arrow.turn.down.left")
+                                .foregroundStyle(Color.blue)
+                            Spacer()
+                            Button(action: {selectedItem = 2}){
+                                Label("Discard",systemImage: "delete.right")
+                                    .foregroundStyle(Color.blue)
+                            }
+
+                        }
+                        .padding()
+                        .padding(.bottom,35)
+                    }
                 }
             }.padding(.trailing)
-            .frame(height:cardHeight)
+                .frame(height:cardHeight)
+
         }.tabViewStyle(PageTabViewStyle())
         .indexViewStyle(.page(backgroundDisplayMode: .always))
         .frame(height:cardHeight)

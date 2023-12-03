@@ -12,12 +12,12 @@ import SwiftData
 struct FlashcardsApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Deck.self,
+            Deck.self
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let deckConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return try ModelContainer(for:schema, configurations: deckConfiguration)
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }

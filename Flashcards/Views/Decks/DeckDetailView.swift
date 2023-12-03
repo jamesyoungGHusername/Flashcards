@@ -9,14 +9,15 @@ import SwiftUI
 import SwiftData
 
 struct DeckDetailView: View {
-    @State var deck:Deck
+    @Bindable var deck:Deck
     @State private var action: Int? = 0
     @Environment(\.editMode) private var editMode
     
 
+
     var body: some View {
         ZStack{
-            NavigationLink(destination: StudyScreenView(deck:$deck), tag: 1, selection: $action) {
+            NavigationLink(destination: StudyScreenView(deck:deck), tag: 1, selection: $action) {
                 EmptyView()
             }
             VStack{
@@ -29,7 +30,7 @@ struct DeckDetailView: View {
                         Text("Untitled").foregroundStyle(.secondary)
                     }
                 }
-                CardListView(deck:deck,showToolbar: false)
+                CardListView(deck:deck,cards:deck.cards,showToolbar: false)
                     .safeAreaInset(edge: .bottom){
                         Button(action: {action = 1}, label: {
                             Text("Study")

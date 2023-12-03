@@ -10,17 +10,16 @@ import SwiftData
 
 @Model
 final class Deck {
-    
-    var uuid: UUID
+    @Attribute(.unique) var id: UUID
     var timestamp: Date
     var title: String
-    var cards:[Card]
+    @Relationship(deleteRule:.cascade) var cards:[Card]
     
     init(timestamp: Date,title:String,cards:[Card]=[]) {
         self.timestamp = timestamp
         self.title = title
         self.cards = cards
-        self.uuid = Foundation.UUID()
+        self.id = Foundation.UUID()
     }
     
     static func example() -> Deck{
@@ -31,8 +30,8 @@ final class Deck {
 }
 
 @Model
-final class Card: Identifiable{
-    var uuid: UUID
+final class Card{
+    @Attribute(.unique) var id: UUID
     var sideA:Face
     var sideB:Face
     var creationDate:Date
@@ -41,7 +40,8 @@ final class Card: Identifiable{
     init(sideA:Face,sideB:Face){
         self.sideA = sideA
         self.sideB = sideB
-        self.uuid = Foundation.UUID()
+        self.id = Foundation.UUID()
+
         self.creationDate = Date.now
 
     }
@@ -51,13 +51,13 @@ final class Card: Identifiable{
 }
 
 @Model
-final class Face {
-    var uuid: UUID
+final class Face:ObservableObject{
+    @Attribute(.unique) var id: UUID
     var text:String
     
     init(text:String){
         self.text = text
-        self.uuid = Foundation.UUID()
+        self.id = Foundation.UUID()
     }
 }
 

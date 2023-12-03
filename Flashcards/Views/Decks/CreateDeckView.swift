@@ -34,7 +34,7 @@ struct CreateDeckView: View {
                 Text("Cards")
                 Spacer()
             }
-            CardListView(deck: deck, showToolbar:false)
+            CardListView(deck: deck, cards:deck.cards,showToolbar:false)
             Spacer()
             Button(action: addItem, label: {
                 Text("Save Deck")

@@ -11,15 +11,14 @@ import SwiftData
 struct CardListView: View {
     @Environment(\.editMode) private var editMode
     @State var deck:Deck
+    var cards:[Card]
     var showToolbar:Bool = true
     @State var addNew:Bool = false
-    
-
     
     var body: some View {
         if(showToolbar){
             List{
-                ForEach(deck.cards){card in
+                ForEach(cards){card in
                     VStack{
                         Text(card.sideA.text)
                     }
@@ -43,24 +42,29 @@ struct CardListView: View {
             .navigationTitle(deck.title)
             .navigationBarTitleDisplayMode(.inline)
         }else{
-            List{
-                ForEach(deck.cards){card in
-                    VStack{
-                        Text(card.sideA.text)
-                        Text(card.sideB.text)
-                    }
-                    .tag(card)
-                }.onDelete(perform: deleteItems)
-                HStack{
-                    Button(action: addCard){
-                        Label("Add Card", systemImage: "plus")
+            ZStack{
+                List{
+                    ForEach(Array(cards.enumerated()),id:\.offset){index,card in
+                        VStack{
+                            NavigationLink(destination: CardDetailView(deck: $deck, card: card,index: index)){
+                                CardRow(card: card)
+                            }
+                            
+                        }
+                        .tag(card)
+                    }.onDelete(perform: deleteItems)
+                    HStack{
+                        Button(action: addCard){
+                            Label("Add Card", systemImage: "plus")
+                        }
                     }
                 }
-            }
-            .sheet(isPresented: $addNew, content: {
-                CreateCardView(isPresented: $addNew,deck:$deck)
-            })
-            .listStyle(.plain)
+                .sheet(isPresented: $addNew, content: {
+                    CreateCardView(isPresented: $addNew,deck:$deck)
+                })
+                .listStyle(.plain)
+            }.navigationTitle(deck.title)
+
         }
 
 

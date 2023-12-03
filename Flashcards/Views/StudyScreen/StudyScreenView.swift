@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StudyScreenView: View {
-    @Binding var deck:Deck
+    @Bindable var deck:Deck
     @State private var scrollPosition: CGPoint = .zero
     @State private var initialOffset: CGFloat = 0
     @State private var stepSize: CGFloat = 0
@@ -41,7 +41,7 @@ struct StudyScreenView: View {
                 ScrollView(showsIndicators: false){
                     VStack(spacing: 0){
                         ForEach(Array(deck.cards.enumerated()),id:\.offset){index,card in
-                            StudyCardView(deck: $deck, card: card, cardHeight: cardHeight,index:index)
+                            StudyCardView(deck: deck, card: card, cardHeight: cardHeight,index:index)
                         }
                     }.background(GeometryReader { vertical in
                         Color.clear
