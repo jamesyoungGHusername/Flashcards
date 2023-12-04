@@ -25,21 +25,32 @@ struct DeckDetailView: View {
                     if editMode?.wrappedValue.isEditing == true {
                         TextField("Untitled",text:$deck.title)
                             .font(.title)
+                            .padding(.horizontal)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(Color.secondary, lineWidth: 4)
+                            )
+                            .padding()
                     }else{
                         if(deck.title != ""){
                             Text(deck.title)
                                 .font(.title)
+                                .padding(.horizontal)
                         }else{
                             Text("Untitled").foregroundStyle(.secondary)
+                                .font(.title)
+                                .padding(.horizontal)
                         }
                     }
                     Spacer()
                 }
-                Button(action: {action = 1}, label: {
-                    Text("Study")
-                }).frame(maxWidth: .infinity)
-                    .padding()
-                    .buttonStyle(.borderedProminent)
+                if editMode?.wrappedValue.isEditing != true {
+                    Button(action: {action = 1}, label: {
+                        Text("Study")
+                    }).frame(maxWidth: .infinity)
+                        .padding()
+                        .buttonStyle(.borderedProminent)
+                }
                 CardListView(deck:deck,cards:deck.cards,showToolbar: false)
             }
         }.toolbar {

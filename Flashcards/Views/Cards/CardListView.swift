@@ -46,7 +46,6 @@ struct CardListView: View {
                 List{
                     ForEach(deck.cards.indices,id:\.self){i in
                         VStack{
-                            Text(String(i))
                             NavigationLink(destination: CardDetailView(deck: $deck, card: deck.cards[i],index: i)){
                                 CardRow(card: deck.cards[i])
                             }
