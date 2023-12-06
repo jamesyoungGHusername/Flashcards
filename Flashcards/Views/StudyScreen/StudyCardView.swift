@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct StudyCardView: View {
-    var deck:Deck
-    @State var card:Card
+    @Binding var deck:[WorkingCard]
+    @State var card:WorkingCard
     @State var disableDiscard:Bool = true
     @State private var selectedItem = 1
     let cardHeight:CGFloat
     let index:Int
     var body: some View {
         ZStack{
+            Text("card body here")
             cardBody
                 .tag(1)
-
-            if(index == deck.cards.count-1){
+            if(index == deck.count-1){
                 VStack{
                     Spacer()
                     HStack{
@@ -91,7 +91,9 @@ struct StudyCardView: View {
                             Image(systemName: "arrow.turn.down.left")
                                 .foregroundStyle(Color.blue)
                             Spacer()
-                            Button(action: {print("discard")}){
+                            Button(action: {
+                                print("discard")
+                            }){
                                 Label("Discard",systemImage: "delete.right")
                                     .foregroundStyle(Color.blue)
                             }
@@ -108,5 +110,6 @@ struct StudyCardView: View {
         .indexViewStyle(.page(backgroundDisplayMode: .always))
         .frame(height:cardHeight)
     }
+
 }
 

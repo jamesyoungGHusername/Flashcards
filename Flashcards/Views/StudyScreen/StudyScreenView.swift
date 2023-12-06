@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StudyScreenView: View {
     @Bindable var deck:Deck
+    @State var cards:[WorkingCard]
     @State private var scrollPosition: CGPoint = .zero
     @State private var initialOffset: CGFloat = 0
     @State private var stepSize: CGFloat = 0
@@ -17,6 +18,17 @@ struct StudyScreenView: View {
             return (self.scrollPosition.y * -1) - (self.initialOffset * -1)
         }
     }
+    init(deck: Deck) {
+        self.deck = deck
+        _cards = State(initialValue: deck.cards.sorted(by: {$0.order < $1.order}).map({(card)-> WorkingCard in
+            return WorkingCard(id:card.id,sideA: WorkingSide(id:card.sideA.id,text: card.sideA.text), sideB: WorkingSide(id:card.sideB.id,text: card.sideB.text))}
+        )
+        )
+        self.scrollPosition = scrollPosition
+        self.initialOffset = initialOffset
+        self.stepSize = stepSize
+
+    }
     private var cardNumber:Int{
         get{
             if(diffFromInitial == 0){
@@ -24,10 +36,10 @@ struct StudyScreenView: View {
             }else{
                 let currentDiffWithOffset = diffFromInitial + (stepSize/2)
                 let screensFromStart = Int(currentDiffWithOffset / stepSize) + 1
-                if(screensFromStart <= deck.cards.count){
+                if(screensFromStart <= cards.count){
                     return screensFromStart
                 }else{
-                    return deck.cards.count
+                    return cards.count
                 }
             }
         }
@@ -40,8 +52,9 @@ struct StudyScreenView: View {
                 let cardHeight = proxy.size.height*0.6
                 ScrollView(showsIndicators: false){
                     VStack(spacing: 0){
-                        ForEach(Array(deck.cards.enumerated()),id:\.offset){index,card in
-                            StudyCardView(deck: deck, card: card, cardHeight: cardHeight,index:index)
+                        Text("VSTACK")
+                        ForEach(Array(cards.enumerated()),id:\.offset){index,card in
+                            StudyCardView(deck: $cards, card: card, cardHeight: cardHeight,index:index)
                         }
                     }.background(GeometryReader { vertical in
                         Color.clear
@@ -60,6 +73,7 @@ struct StudyScreenView: View {
                     .coordinateSpace(name:"scroll")
                     .onAppear(){
                         self.stepSize = proxy.size.height
+                        print(proxy.size.height)
                     }
             }
         }.navigationBarTitleDisplayMode(.inline)
@@ -76,4 +90,14 @@ struct ScrollOffsetPreferenceKey: PreferenceKey {
     
     static func reduce(value: inout CGPoint, nextValue: () -> CGPoint) {
     }
+}
+
+struct WorkingCard{
+    var id:UUID
+    var sideA:WorkingSide
+    var sideB:WorkingSide
+}
+struct WorkingSide{
+    var id:UUID
+    var text:String
 }
