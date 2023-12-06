@@ -15,10 +15,12 @@ struct CardListView: View {
     var showToolbar:Bool = true
     @State var addNew:Bool = false
     
+
+    
     var body: some View {
         if(showToolbar){
             List{
-                ForEach(cards){card in
+                ForEach(deck.cards.sorted(by: {$0.order < $1.order})){card in
                     VStack{
                         Text(card.sideA.text)
                     }
@@ -44,10 +46,10 @@ struct CardListView: View {
         }else{
             ZStack{
                 List{
-                    ForEach(deck.cards.indices,id:\.self){i in
+                    ForEach(deck.cards.sorted(by: {$0.order < $1.order})){card in
                         VStack{
-                            NavigationLink(destination: CardDetailView(deck: $deck, card: deck.cards[i],index: i)){
-                                CardRow(card: deck.cards[i])
+                            NavigationLink(destination: CardDetailView(deck: $deck, card: card,index: card.order)){
+                                CardRow(card: card)
                             }
                             
                         }
@@ -62,6 +64,12 @@ struct CardListView: View {
                     CreateCardView(deck:$deck,isPresented: $addNew)
                 })
                 .listStyle(.plain)
+                .onAppear(){
+                    let sorted = deck.cards.sorted(by: {$0.order < $1.order})
+                    for item in sorted {
+                        print(item.order)
+                    }
+                }
             }.navigationBarTitleDisplayMode(.inline)
 
         }
@@ -71,7 +79,12 @@ struct CardListView: View {
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                deck.cards.remove(at: index)
+                let sorted = deck.cards.sorted(by: {$0.order < $1.order})
+                let trueIndex = deck.cards.firstIndex(of:sorted[index])
+                if(trueIndex != nil){
+                    deck.cards.remove(at: trueIndex!)
+                }
+                
             }
         }
     }

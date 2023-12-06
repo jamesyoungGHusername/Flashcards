@@ -81,13 +81,13 @@ struct ImportingView: View {
                                 selectedCards.contains(row.id)
                             }
                             if(!(selected?.isEmpty ?? true)){
-                                selected!.forEach{ row in
+                                for (index,row) in selected!.enumerated() {
                                     //Use first non empty column for side A
                                     let sideA = row.cells.first(where: {$0.text != ""})
                                     //Use last non empty column for side B, unless there's only one empty column
                                     let sideB = row.cells.last(where: {$0.text != "" && $0.text != sideA?.text ?? ""})
                                     parentDeck.cards.append(
-                                        Card(sideA: Face(text: sideA?.text ?? ""), sideB: Face(text: sideB?.text ?? ""))
+                                        Card(sideA: Face(text: sideA?.text ?? ""), sideB: Face(text: sideB?.text ?? ""),order:index)
                                     )
                                 }
                                 isPresented = false

@@ -34,14 +34,15 @@ final class Card{
     @Attribute(.unique) var id: UUID
     var sideA:Face
     var sideB:Face
+    var order:Int
     var creationDate:Date
 
     
-    init(sideA:Face,sideB:Face){
+    init(sideA:Face,sideB:Face,order:Int = 0){
         self.sideA = sideA
         self.sideB = sideB
         self.id = Foundation.UUID()
-
+        self.order = order
         self.creationDate = Date.now
 
     }
