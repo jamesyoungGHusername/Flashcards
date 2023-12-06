@@ -48,7 +48,7 @@ struct CardListView: View {
                 List{
                     ForEach(deck.cards.sorted(by: {$0.order < $1.order})){card in
                         VStack{
-                            NavigationLink(destination: CardDetailView(deck: $deck, card: card,index: card.order)){
+                            NavigationLink(destination: CardDetailView(deck: $deck, card: card)){
                                 CardRow(card: card)
                             }
                             
@@ -64,12 +64,6 @@ struct CardListView: View {
                     CreateCardView(deck:$deck,isPresented: $addNew)
                 })
                 .listStyle(.plain)
-                .onAppear(){
-                    let sorted = deck.cards.sorted(by: {$0.order < $1.order})
-                    for item in sorted {
-                        print(item.order)
-                    }
-                }
             }.navigationBarTitleDisplayMode(.inline)
 
         }

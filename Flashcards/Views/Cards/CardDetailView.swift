@@ -19,16 +19,15 @@ struct CardDetailView: View {
     @State var newText:String = ""
     @FocusState var sideAFocued:Bool
     @FocusState var sideBFocued:Bool
-    var index:Int
+
     @State var fullScreenHeight = 1.0
     @State var hasResized = false
     
-    init(deck: Binding<Deck>, card: Card,index:Int) {
+    init(deck: Binding<Deck>, card: Card) {
         _deck = deck
         self.card = card
         _sideA = State(initialValue: card.sideA.text)
         _sideB = State(initialValue: card.sideB.text)
-        self.index = index
     }
 
     
@@ -126,6 +125,9 @@ struct CardDetailView: View {
             }
             .onDisappear(){
                 if(card.sideA.text != sideA || card.sideB.text != sideB){
+                    guard let index = deck.cards.firstIndex(where: {$0.id == card.id})else{
+                        return
+                    }
                     deck.cards[index].sideA = Face(text: sideA)
                     deck.cards[index].sideB = Face(text: sideB)
                 }
