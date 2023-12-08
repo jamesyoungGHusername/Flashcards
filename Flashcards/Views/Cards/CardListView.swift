@@ -20,7 +20,7 @@ struct CardListView: View {
     var body: some View {
         if(showToolbar){
             List{
-                ForEach(deck.cards.sorted(by: {$0.order < $1.order})){card in
+                ForEach(deck.sortedCards){card in
                     VStack{
                         Text(card.sideA.text)
                     }
@@ -46,7 +46,7 @@ struct CardListView: View {
         }else{
             ZStack{
                 List{
-                    ForEach(deck.cards.sorted(by: {$0.order < $1.order})){card in
+                    ForEach(cards){card in
                         VStack{
                             NavigationLink(destination: CardDetailView(deck: $deck, card: card)){
                                 CardRow(card: card)

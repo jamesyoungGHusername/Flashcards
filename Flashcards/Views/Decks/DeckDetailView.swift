@@ -51,7 +51,7 @@ struct DeckDetailView: View {
                         .padding()
                         .buttonStyle(.borderedProminent)
                 }
-                CardListView(deck:deck,cards:deck.cards,showToolbar: false)
+                CardListView(deck:deck,cards:deck.sortedCards,showToolbar: false)
             }
         }.toolbar {
             EditButton()

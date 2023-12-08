@@ -20,7 +20,7 @@ struct StudyScreenView: View {
     }
     init(deck: Deck) {
         self.deck = deck
-        _cards = State(initialValue: deck.cards.sorted(by: {$0.order < $1.order}).map({(card)-> WorkingCard in
+        _cards = State(initialValue: deck.sortedCards.map({(card)-> WorkingCard in
             return WorkingCard(id:card.id,sideA: WorkingSide(id:card.sideA.id,text: card.sideA.text), sideB: WorkingSide(id:card.sideB.id,text: card.sideB.text))}
         )
         )

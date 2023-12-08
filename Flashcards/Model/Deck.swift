@@ -14,6 +14,9 @@ final class Deck {
     var timestamp: Date
     var title: String
     @Relationship(deleteRule:.cascade) var cards:[Card]
+    var sortedCards:[Card]{
+        return cards.sorted(by: {$0.order < $1.order})
+    }
     
     init(timestamp: Date,title:String,cards:[Card]=[]) {
         self.timestamp = timestamp

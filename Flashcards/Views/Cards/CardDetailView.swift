@@ -125,11 +125,8 @@ struct CardDetailView: View {
             }
             .onDisappear(){
                 if(card.sideA.text != sideA || card.sideB.text != sideB){
-                    guard let index = deck.cards.firstIndex(where: {$0.id == card.id})else{
-                        return
-                    }
-                    deck.cards[index].sideA = Face(text: sideA)
-                    deck.cards[index].sideB = Face(text: sideB)
+                    card.sideA = Face(text: sideA)
+                    card.sideB = Face(text: sideB)
                 }
 
             }
