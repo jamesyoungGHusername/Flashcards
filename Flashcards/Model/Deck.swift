@@ -35,22 +35,23 @@ final class Deck {
 @Model
 final class Card{
     @Attribute(.unique) var id: UUID
-    var sideA:Face
-    var sideB:Face
+    var faces:[Face]
     var order:Int
     var creationDate:Date
+    var sortedFaces:[Face]{
+        return faces.sorted(by: {$0.order < $1.order})
+    }
 
     
-    init(sideA:Face,sideB:Face,order:Int = 0){
-        self.sideA = sideA
-        self.sideB = sideB
+    init(faces:[Face],order:Int = 0){
+        self.faces = faces
         self.id = Foundation.UUID()
         self.order = order
         self.creationDate = Date.now
 
     }
     static func example() -> Card{
-        return Card(sideA: Face(text:"side a"), sideB:Face(text: "side b"))
+        return Card(faces: [Face(text:"side a"),Face(text: "side b")])
     }
 }
 
@@ -58,10 +59,12 @@ final class Card{
 final class Face:ObservableObject{
     @Attribute(.unique) var id: UUID
     var text:String
+    var order:Int
     
-    init(text:String){
+    init(text:String,order:Int = 0){
         self.text = text
         self.id = Foundation.UUID()
+        self.order = order
     }
 }
 

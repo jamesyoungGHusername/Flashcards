@@ -107,7 +107,7 @@ struct CreateCardView: View {
             }
             .onDisappear(){
                 if(!(sideA == "" && sideB == "")){
-                    deck.cards.append(Card(sideA: Face(text: sideA), sideB: Face(text: sideB)))
+                    deck.cards.append(Card(faces:[Face(text: sideA), Face(text: sideB)]))
                 }
                 
             }

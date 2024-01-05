@@ -21,7 +21,7 @@ struct StudyScreenView: View {
     init(deck: Deck) {
         self.deck = deck
         _cards = State(initialValue: deck.sortedCards.map({(card)-> WorkingCard in
-            return WorkingCard(id:card.id,sideA: WorkingSide(id:card.sideA.id,text: card.sideA.text), sideB: WorkingSide(id:card.sideB.id,text: card.sideB.text))}
+            return WorkingCard(id:card.id,faces: card.sortedFaces.map{WorkingFace(id:$0.id,text: $0.text)})}
         )
         )
         self.scrollPosition = scrollPosition
@@ -92,12 +92,11 @@ struct ScrollOffsetPreferenceKey: PreferenceKey {
     }
 }
 
-struct WorkingCard{
+struct WorkingCard:Identifiable{
     var id:UUID
-    var sideA:WorkingSide
-    var sideB:WorkingSide
+    var faces:[WorkingFace]
 }
-struct WorkingSide{
+struct WorkingFace: Identifiable{
     var id:UUID
     var text:String
 }

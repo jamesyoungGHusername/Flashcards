@@ -26,8 +26,8 @@ struct CardDetailView: View {
     init(deck: Binding<Deck>, card: Card) {
         _deck = deck
         self.card = card
-        _sideA = State(initialValue: card.sideA.text)
-        _sideB = State(initialValue: card.sideB.text)
+        _sideA = State(initialValue: card.faces[0].text)
+        _sideB = State(initialValue: card.faces[1].text)
     }
 
     
@@ -124,9 +124,9 @@ struct CardDetailView: View {
                 EditButton()
             }
             .onDisappear(){
-                if(card.sideA.text != sideA || card.sideB.text != sideB){
-                    card.sideA = Face(text: sideA)
-                    card.sideB = Face(text: sideB)
+                if(card.faces[0].text != sideA || card.faces[1].text != sideB){
+                    card.faces[0] = Face(text: sideA)
+                    card.faces[1] = Face(text: sideB)
                 }
 
             }

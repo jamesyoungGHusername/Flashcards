@@ -22,7 +22,7 @@ struct CardListView: View {
             List{
                 ForEach(deck.sortedCards){card in
                     VStack{
-                        Text(card.sideA.text)
+                        Text(card.sortedFaces[0].text)
                     }
                     .tag(card)
                 }.onDelete(perform: deleteItems)
