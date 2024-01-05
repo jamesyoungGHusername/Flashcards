@@ -14,7 +14,8 @@ struct CardListView: View {
     var cards:[Card]
     var showToolbar:Bool = true
     @State var addNew:Bool = false
-    
+    var randomizeCards = false
+    var randomizeFaces = false
 
     
     var body: some View {
@@ -49,7 +50,7 @@ struct CardListView: View {
                     ForEach(cards){card in
                         VStack{
                             NavigationLink(destination: CardDetailView(deck: $deck, card: card)){
-                                CardRow(card: card)
+                                CardRow(card: card,randomizeFaces:randomizeFaces)
                             }
                             
                         }

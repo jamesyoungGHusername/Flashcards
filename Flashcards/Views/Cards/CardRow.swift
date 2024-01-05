@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CardRow: View {
     var card:Card
+    var randomizeFaces:Bool = false
     var body: some View {
         HStack{
             Text(card.sortedFaces[0].text)

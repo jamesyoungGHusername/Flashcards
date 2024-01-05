@@ -11,6 +11,8 @@ import SwiftData
 struct DeckDetailView: View {
     @Bindable var deck:Deck
     @State private var action: Int? = 0
+    @State private var randomizeCards: Bool = false
+    @State private var randomizeFaces: Bool = false
     @Environment(\.editMode) private var editMode
     
 
@@ -44,6 +46,10 @@ struct DeckDetailView: View {
                     }
                     Spacer()
                 }
+                Toggle("Randomize Cards",isOn: $randomizeCards)
+                Toggle("Randomize Faces",isOn: $randomizeFaces)
+
+                CardListView(deck:deck,cards:deck.sortedCards,showToolbar: false,randomizeCards: randomizeCards,randomizeFaces: randomizeFaces)
                 if editMode?.wrappedValue.isEditing != true {
                     Button(action: {action = 1}, label: {
                         Text("Study")
@@ -51,7 +57,6 @@ struct DeckDetailView: View {
                         .padding()
                         .buttonStyle(.borderedProminent)
                 }
-                CardListView(deck:deck,cards:deck.sortedCards,showToolbar: false)
             }
         }.toolbar {
             EditButton()
