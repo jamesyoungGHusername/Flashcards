@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StudyScreenView: View {
     @Bindable var deck:Deck
+    var randomizeCards:Bool = false
+    var randomizeFaces:Bool = false
     @State var cards:[WorkingCard]
     @State private var scrollPosition: CGPoint = .zero
     @State private var initialOffset: CGFloat = 0
@@ -18,11 +20,32 @@ struct StudyScreenView: View {
             return (self.scrollPosition.y * -1) - (self.initialOffset * -1)
         }
     }
-    init(deck: Deck) {
+    init(deck: Deck,randomizeCards:Bool,randomizeFaces:Bool) {
         self.deck = deck
-        _cards = State(initialValue: deck.sortedCards.map({(card)-> WorkingCard in
-            return WorkingCard(id:card.id,faces: card.sortedFaces.map{WorkingFace(id:$0.id,text: $0.text)})}
-        )
+        _cards = State(initialValue: randomizeCards ? 
+            deck.sortedCards.shuffled().map(
+                {(card)-> WorkingCard in
+                    return WorkingCard(
+                        id:card.id,
+                        faces: randomizeFaces ?
+                            card.sortedFaces.shuffled().map{WorkingFace(id:$0.id,text: $0.text)}
+                            :
+                            card.sortedFaces.map{WorkingFace(id:$0.id,text: $0.text)}
+                    )
+                }
+            )
+            :
+            deck.sortedCards.map(
+                {(card)-> WorkingCard in
+                    return WorkingCard(
+                        id:card.id,
+                        faces: randomizeFaces ?
+                        card.sortedFaces.shuffled().map{WorkingFace(id:$0.id,text: $0.text)}
+                        :
+                            card.sortedFaces.map{WorkingFace(id:$0.id,text: $0.text)}
+                    )
+                }
+            )
         )
         self.scrollPosition = scrollPosition
         self.initialOffset = initialOffset

@@ -19,7 +19,7 @@ struct DeckDetailView: View {
 
     var body: some View {
         ZStack{
-            NavigationLink(destination: StudyScreenView(deck:deck), tag: 1, selection: $action) {
+            NavigationLink(destination: StudyScreenView(deck:deck,randomizeCards:randomizeCards,randomizeFaces:randomizeFaces), tag: 1, selection: $action) {
                 EmptyView()
             }
             VStack{

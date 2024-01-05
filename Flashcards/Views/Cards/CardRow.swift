@@ -12,17 +12,18 @@ struct CardRow: View {
     var randomizeFaces:Bool = false
     var body: some View {
         HStack{
-            Text(card.sortedFaces[0].text)
-                .lineLimit(3)
-                .frame(maxWidth: .infinity)
-            Divider()
-            Text(card.sortedFaces[1].text)
-                .lineLimit(3)
-                .frame(maxWidth: .infinity)
-            Divider()
-            Text(card.sortedFaces[2].text)
-                .lineLimit(3)
-                .frame(maxWidth: .infinity)
+            ForEach(Array(randomizeFaces ? card.sortedFaces.shuffled().enumerated() : card.sortedFaces.enumerated()),id:\.offset){index,face in
+                if(index == 2){
+                    Text(face.text)
+                        .lineLimit(3)
+                        .frame(maxWidth: .infinity)
+                }else if (index<2){
+                    Text(face.text)
+                        .lineLimit(3)
+                        .frame(maxWidth: .infinity)
+                    Divider()
+                }
+            }
         }.padding(.vertical)
     }
 }

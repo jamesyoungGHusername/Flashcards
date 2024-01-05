@@ -16,7 +16,14 @@ struct CardListView: View {
     @State var addNew:Bool = false
     var randomizeCards = false
     var randomizeFaces = false
-
+    init(deck: Deck, cards: [Card], showToolbar: Bool = true, addNew: Bool = false, randomizeCards: Bool = false, randomizeFaces: Bool = false) {
+        _deck = State(initialValue: deck)
+        self.cards = randomizeCards ? cards.shuffled() : cards
+        self.showToolbar = showToolbar
+        self.addNew = addNew
+        self.randomizeCards = randomizeCards
+        self.randomizeFaces = randomizeFaces
+    }
     
     var body: some View {
         if(showToolbar){
